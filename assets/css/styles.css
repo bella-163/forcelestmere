@@ -24,7 +24,8 @@ body {
   color: var(--text);
   background:
     radial-gradient(circle at 50% 0%, rgba(51, 185, 220, 0.22), transparent 34rem),
-    linear-gradient(180deg, #081726 0%, #06111d 48%, #03070d 100%);
+    linear-gradient(180deg, rgba(8, 23, 38, 0.72) 0%, rgba(6, 17, 29, 0.82) 48%, rgba(3, 7, 13, 0.92) 100%),
+    url("../images/bg.jpeg") center / cover fixed;
   min-height: 100vh;
 }
 
@@ -125,7 +126,7 @@ img { max-width: 100%; display: block; }
   background:
     linear-gradient(180deg, rgba(5, 11, 20, 0.18), rgba(5, 11, 20, 0.88)),
     radial-gradient(circle at 50% 55%, rgba(103, 232, 249, 0.34), transparent 18rem),
-    url("../images/hero-placeholder.svg");
+    url("../images/bg.jpeg");
   background-size: cover;
   background-position: center;
 }
