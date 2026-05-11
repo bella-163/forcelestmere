@@ -1,0 +1,38 @@
+[
+  {
+    "command": "/spawn",
+    "category": "傳送",
+    "description": "回到主城或安全出生點",
+    "cooldown": "5 秒"
+  },
+  {
+    "command": "/home",
+    "category": "傳送",
+    "description": "回到自己設定的家",
+    "cooldown": "10 秒"
+  },
+  {
+    "command": "/sethome",
+    "category": "傳送",
+    "description": "設定目前位置為家",
+    "cooldown": "無"
+  },
+  {
+    "command": "/tpa 玩家名稱",
+    "category": "玩家互動",
+    "description": "向指定玩家發送傳送請求",
+    "cooldown": "15 秒"
+  },
+  {
+    "command": "/shop",
+    "category": "經濟系統",
+    "description": "開啟伺服器商店介面",
+    "cooldown": "無"
+  },
+  {
+    "command": "/daily",
+    "category": "任務系統",
+    "description": "查看每日任務與可領取獎勵",
+    "cooldown": "每日重置"
+  }
+]
