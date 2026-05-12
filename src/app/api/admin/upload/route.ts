@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+const ALLOWED_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
 
 async function isAuthed() {
   if (!ADMIN_PASSWORD) return false;
@@ -20,9 +21,15 @@ export async function POST(req: NextRequest) {
   const file = formData.get("file") as File | null;
   if (!file) return NextResponse.json({ error: "no file" }, { status: 400 });
 
-  const ext = path.extname(file.name) || ".png";
+  const ext = path.extname(file.name).toLowerCase() || ".png";
+  if (!ALLOWED_EXTENSIONS.has(ext)) {
+    return NextResponse.json({ error: "unsupported file type" }, { status: 400 });
+  }
+
   const safeName = `upload_${Date.now()}${ext}`;
-  const destPath = path.join(process.cwd(), "public", "images", safeName);
+  const imageDir = path.join(process.cwd(), "public", "images");
+  fs.mkdirSync(imageDir, { recursive: true });
+  const destPath = path.join(imageDir, safeName);
 
   const buffer = Buffer.from(await file.arrayBuffer());
   fs.writeFileSync(destPath, buffer);

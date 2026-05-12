@@ -18,8 +18,9 @@ export default function AdminPage() {
   const [logging, setLogging] = useState(false);
 
   useEffect(() => {
-    fetch("/api/admin/data?key=__ping", { method: "PUT", headers: { "Content-Type": "application/json" }, body: "null" })
-      .then((r) => setAuthed(r.status !== 401))
+    fetch("/api/admin/auth")
+      .then((r) => r.json())
+      .then((data) => setAuthed(Boolean(data.authed)))
       .catch(() => setAuthed(false));
   }, []);
 
