@@ -26,17 +26,24 @@
 
     <section class="container section">
       <div class="panel">
-        <div class="news-list">
-          <article class="news-item"><span class="tag tag--important">重要</span><div><h3>5/24 伺服器版本更新公告</h3><p>全新水域地圖「沉靜遺跡」開放探索，新增副本與裝備強化內容。</p></div><time datetime="2025-05-24">2025-05-24</time></article>
-          <article class="news-item"><span class="tag tag--event">活動</span><div><h3>端午節活動開跑！</h3><p>限時活動、副本挑戰、節日限定裝備與稱號等你來拿。</p></div><time datetime="2025-05-20">2025-05-20</time></article>
-          <article class="news-item"><span class="tag tag--update">更新</span><div><h3>技能平衡調整公告</h3><p>針對戰士、法師、刺客部分技能進行數值調整。</p></div><time datetime="2025-05-18">2025-05-18</time></article>
-          <article class="news-item"><span class="tag">公告</span><div><h3>例行維護公告</h3><p>伺服器將於指定時段進行維護，期間無法登入。</p></div><time datetime="2025-05-17">2025-05-17</time></article>
-        </div>
+        <div class="news-list" id="news-list"></div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer"><p class="copyright">© 2025 文靜之潭 Minecraft RPG Server.</p></footer>
   <script src="../assets/js/main.js"></script>
+  <script>
+  (async () => {
+    const TAG = { important: 'tag--important', event: 'tag--event', update: 'tag--update', general: '' };
+    const news = await fetch('/api/data/news').then(r => r.json());
+    document.getElementById('news-list').innerHTML = news.map(n => `
+      <article class="news-item">
+        <span class="tag ${TAG[n.tagType] || ''}">${n.tag}</span>
+        <div><h3>${n.title}</h3><p>${n.content}</p></div>
+        <time datetime="${n.date}">${n.date}</time>
+      </article>`).join('');
+  })();
+  </script>
 </body>
 </html>

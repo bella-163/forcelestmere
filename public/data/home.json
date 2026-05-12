@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "eyebrow": "探索水之秘境・書寫你的傳奇",
+    "title": "文靜之潭",
+    "lead": "文靜之潭至今已有十一年歷史\n目前的版本自2018年便持續更新、營運至今\n\n遊戲中不含任何付費取得 PvP 優勢的機制\n遵循 Minecraft EULA 商業使用準則",
+    "ctaPrimary": { "text": "最新消息", "href": "/news" },
+    "ctaSecondary": { "text": "職業介紹", "href": "/classes" }
+  },
+  "featureCards": [
+    {
+      "eyebrow": "CLASSES",
+      "title": "職業介紹",
+      "description": "六種職業各有特色，從坦克、輸出到治療，找到最適合你的玩法。",
+      "href": "/classes",
+      "theme": "teal"
+    },
+    {
+      "eyebrow": "EQUIPMENT",
+      "title": "裝備介紹",
+      "description": "詳細的裝備屬性、取得方式與搭配建議。",
+      "href": "/equipment",
+      "theme": "blue"
+    },
+    {
+      "eyebrow": "MONSTERS",
+      "title": "怪物圖鑑",
+      "description": "各區域怪物的等級、弱點與掉落資訊。",
+      "href": "/monsters",
+      "theme": "gold"
+    },
+    {
+      "eyebrow": "COMMANDS",
+      "title": "功能指令",
+      "description": "伺服器常用指令整理，快速查找你需要的功能。",
+      "href": "/commands",
+      "theme": "violet"
+    }
+  ],
+  "serverIPs": [
+    { "label": "伺服器 IP", "ip": "play.celestmere.net" }
+  ]
+}

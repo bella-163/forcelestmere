@@ -24,17 +24,28 @@
       </div>
     </section>
 
-    <section class="container section content-grid">
-      <article class="content-card"><h3>靜謐之劍</h3><p>平衡型近戰武器，適合戰士與刺客作為前期到中期主武器。</p><div class="meta-list"><span>稀有度 <strong>傳說</strong></span><span>取得方式 <strong>沉靜遺跡 Boss</strong></span><span>效果 <strong>機率造成水痕斬擊</strong></span></div></article>
-      <article class="content-card"><h3>潭水護甲</h3><p>提供防禦與生命加成，套裝可降低受到的遠程傷害。</p><div class="meta-list"><span>稀有度 <strong>史詩</strong></span><span>取得方式 <strong>水域副本掉落</strong></span><span>效果 <strong>提升生命與抗性</strong></span></div></article>
-      <article class="content-card"><h3>潮汐法杖</h3><p>法師專用武器，可強化水系與冰系技能傷害。</p><div class="meta-list"><span>稀有度 <strong>傳說</strong></span><span>取得方式 <strong>活動兌換</strong></span><span>效果 <strong>技能冷卻降低</strong></span></div></article>
-      <article class="content-card"><h3>守護者之盾</h3><p>坦克向副手裝備，格擋成功時可以觸發短暫護盾。</p><div class="meta-list"><span>稀有度 <strong>史詩</strong></span><span>取得方式 <strong>遠古守護者掉落</strong></span><span>效果 <strong>格擋護盾</strong></span></div></article>
-      <article class="content-card"><h3>深潭戒指</h3><p>通用飾品，提升少量全屬性，適合補足角色短板。</p><div class="meta-list"><span>稀有度 <strong>稀有</strong></span><span>取得方式 <strong>任務獎勵</strong></span><span>效果 <strong>全屬性提升</strong></span></div></article>
-      <article class="content-card"><h3>星瀾披風</h3><p>提升移動速度與閃避率，適合探索、跑圖與遠程職業。</p><div class="meta-list"><span>稀有度 <strong>史詩</strong></span><span>取得方式 <strong>限時活動</strong></span><span>效果 <strong>移速與閃避提升</strong></span></div></article>
+    <section class="container section">
+      <div class="content-grid" id="equipment-grid"></div>
     </section>
   </main>
 
   <footer class="site-footer"><p class="copyright">© 2025 文靜之潭 Minecraft RPG Server.</p></footer>
   <script src="../assets/js/main.js"></script>
+  <script>
+  (async () => {
+    const items = await fetch('/api/data/equipment').then(r => r.json());
+    document.getElementById('equipment-grid').innerHTML = items.map(e => `
+      <article class="content-card">
+        <h3>${e.name}</h3>
+        <p>${e.description || ''}</p>
+        <div class="meta-list">
+          <span>稀有度 <strong>${e.rarity}</strong></span>
+          <span>類型 <strong>${e.type}</strong></span>
+          <span>取得方式 <strong>${e.source}</strong></span>
+          <span>效果 <strong>${e.effect}</strong></span>
+        </div>
+      </article>`).join('');
+  })();
+  </script>
 </body>
 </html>

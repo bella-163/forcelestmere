@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "warrior",
+    "name": "戰士",
+    "role": "近戰・坦克",
+    "difficulty": "新手友善",
+    "color": "crimson",
+    "image": "",
+    "description": "近戰坦克型職業，具備高生命值與穩定控場能力，適合站在隊伍最前線。",
+    "features": ["高生命值", "格擋減傷", "穩定控場"]
+  },
+  {
+    "slug": "assassin",
+    "name": "刺客",
+    "role": "近戰・爆發",
+    "difficulty": "中等",
+    "color": "violet",
+    "image": "",
+    "description": "高爆發輸出職業，擅長快速切入與收割殘血敵人，但需要良好走位。",
+    "features": ["高爆發", "位移", "背刺加成"]
+  },
+  {
+    "slug": "mage",
+    "name": "法師",
+    "role": "遠程・法術輸出",
+    "difficulty": "中等",
+    "color": "blue",
+    "image": "",
+    "description": "遠程魔法輸出職業，擅長範圍傷害與元素控制，適合清怪與副本輸出。",
+    "features": ["範圍傷害", "元素控制", "清怪效率高"]
+  },
+  {
+    "slug": "priest",
+    "name": "牧師",
+    "role": "支援・治療",
+    "difficulty": "新手友善",
+    "color": "gold",
+    "image": "",
+    "description": "治療支援型職業，提供回血、護盾與增益效果，是副本隊伍的安心保險。",
+    "features": ["治療", "護盾", "隊伍增益"]
+  },
+  {
+    "slug": "hunter",
+    "name": "獵人",
+    "role": "遠程・物理輸出",
+    "difficulty": "中等",
+    "color": "green",
+    "image": "",
+    "description": "遠程物理輸出職業，能以弓箭與陷阱牽制敵人，適合野外探索。",
+    "features": ["陷阱", "標記", "風箏能力"]
+  },
+  {
+    "slug": "summoner",
+    "name": "召喚師",
+    "role": "召喚・支援",
+    "difficulty": "進階",
+    "color": "teal",
+    "image": "",
+    "description": "召喚生物協助作戰，能依照情況切換召喚物，是非常有變化的職業。",
+    "features": ["召喚獸", "靈魂契約", "戰術配置"]
+  }
+]

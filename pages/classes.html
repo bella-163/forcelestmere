@@ -24,17 +24,27 @@
       </div>
     </section>
 
-    <section class="container section content-grid">
-      <article class="content-card"><h3>戰士</h3><p>近戰坦克型職業，具備高生命值與穩定控場能力，適合站在隊伍最前線。</p><ul><li>定位：近戰、坦克</li><li>推薦：新手、喜歡正面硬剛的玩家</li><li>特色：嘲諷、格擋、範圍斬擊</li></ul></article>
-      <article class="content-card"><h3>刺客</h3><p>高爆發輸出職業，擅長快速切入與收割殘血敵人，但需要良好走位。</p><ul><li>定位：近戰、爆發</li><li>推薦：喜歡操作感的玩家</li><li>特色：背刺、隱身、位移</li></ul></article>
-      <article class="content-card"><h3>法師</h3><p>遠程魔法輸出職業，擅長範圍傷害與元素控制，適合清怪與副本輸出。</p><ul><li>定位：遠程、法術</li><li>推薦：喜歡大範圍技能的玩家</li><li>特色：火球、冰霜、雷擊</li></ul></article>
-      <article class="content-card"><h3>牧師</h3><p>治療支援型職業，提供回血、護盾與增益效果，是副本隊伍的安心保險。</p><ul><li>定位：支援、治療</li><li>推薦：喜歡照顧隊友的玩家</li><li>特色：治癒、祝福、復活</li></ul></article>
-      <article class="content-card"><h3>獵人</h3><p>遠程物理輸出職業，能以弓箭與陷阱牽制敵人，適合野外探索。</p><ul><li>定位：遠程、輸出</li><li>推薦：喜歡安全輸出的玩家</li><li>特色：陷阱、標記、連射</li></ul></article>
-      <article class="content-card"><h3>召喚師</h3><p>召喚生物協助作戰，能依照情況切換召喚物，是非常有變化的職業。</p><ul><li>定位：召喚、支援</li><li>推薦：喜歡策略配置的玩家</li><li>特色：召喚獸、靈魂契約、群體增益</li></ul></article>
+    <section class="container section">
+      <div class="content-grid" id="classes-grid"></div>
     </section>
   </main>
 
   <footer class="site-footer"><p class="copyright">© 2025 文靜之潭 Minecraft RPG Server.</p></footer>
   <script src="../assets/js/main.js"></script>
+  <script>
+  (async () => {
+    const classes = await fetch('/api/data/classes').then(r => r.json());
+    document.getElementById('classes-grid').innerHTML = classes.map(c => `
+      <article class="content-card">
+        <h3>${c.name}</h3>
+        <p>${c.description || ''}</p>
+        <ul>
+          <li>定位：${c.role}</li>
+          <li>難度：${c.difficulty}</li>
+          <li>特色：${(c.features || []).join('、')}</li>
+        </ul>
+      </article>`).join('');
+  })();
+  </script>
 </body>
 </html>

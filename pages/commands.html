@@ -24,17 +24,26 @@
       </div>
     </section>
 
-    <section class="container section content-grid">
-      <article class="content-card"><h3>/spawn</h3><p>回到主城或安全出生點。</p><div class="meta-list"><span>分類 <strong>傳送</strong></span><span>冷卻 <strong>5 秒</strong></span><span>權限 <strong>所有玩家</strong></span></div></article>
-      <article class="content-card"><h3>/home</h3><p>回到自己設定的家。</p><div class="meta-list"><span>分類 <strong>傳送</strong></span><span>冷卻 <strong>10 秒</strong></span><span>權限 <strong>所有玩家</strong></span></div></article>
-      <article class="content-card"><h3>/sethome</h3><p>設定目前位置為家。</p><div class="meta-list"><span>分類 <strong>傳送</strong></span><span>冷卻 <strong>無</strong></span><span>權限 <strong>所有玩家</strong></span></div></article>
-      <article class="content-card"><h3>/tpa 玩家名稱</h3><p>向指定玩家發送傳送請求。</p><div class="meta-list"><span>分類 <strong>玩家互動</strong></span><span>冷卻 <strong>15 秒</strong></span><span>權限 <strong>所有玩家</strong></span></div></article>
-      <article class="content-card"><h3>/shop</h3><p>開啟伺服器商店介面。</p><div class="meta-list"><span>分類 <strong>經濟系統</strong></span><span>冷卻 <strong>無</strong></span><span>權限 <strong>所有玩家</strong></span></div></article>
-      <article class="content-card"><h3>/daily</h3><p>查看每日任務與可領取獎勵。</p><div class="meta-list"><span>分類 <strong>任務系統</strong></span><span>冷卻 <strong>每日重置</strong></span><span>權限 <strong>所有玩家</strong></span></div></article>
+    <section class="container section">
+      <div class="content-grid" id="commands-grid"></div>
     </section>
   </main>
 
   <footer class="site-footer"><p class="copyright">© 2025 文靜之潭 Minecraft RPG Server.</p></footer>
   <script src="../assets/js/main.js"></script>
+  <script>
+  (async () => {
+    const commands = await fetch('/api/data/commands').then(r => r.json());
+    document.getElementById('commands-grid').innerHTML = commands.map(c => `
+      <article class="content-card">
+        <h3 style="font-family:monospace;">${c.command}</h3>
+        <p>${c.description}</p>
+        <div class="meta-list">
+          <span>分類 <strong>${c.category}</strong></span>
+          <span>冷卻 <strong>${c.cooldown}</strong></span>
+        </div>
+      </article>`).join('');
+  })();
+  </script>
 </body>
 </html>

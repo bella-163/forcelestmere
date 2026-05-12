@@ -34,9 +34,9 @@
     <section class="hero hero--home">
       <div class="hero__overlay"></div>
       <div class="hero__content container">
-        <p class="eyebrow">探索水之秘境・書寫你的傳奇</p>
-        <h1>文靜之潭</h1>
-        <p class="hero__lead">文靜之潭至今已有十一年歷史<br>目前的版本自2018年便持續更新、營運至今<br><br>遊戲中不含任何付費取得 PvP 優勢的機制<br>遵循 Minecraft EULA 商業使用準則</p>
+        <p class="eyebrow" id="hero-eyebrow">探索水之秘境・書寫你的傳奇</p>
+        <h1 id="hero-title">文靜之潭</h1>
+        <p class="hero__lead" id="hero-lead">文靜之潭至今已有十一年歷史<br>目前的版本自2018年便持續更新、營運至今<br><br>遊戲中不含任何付費取得 PvP 優勢的機制<br>遵循 Minecraft EULA 商業使用準則</p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#server-info">加入伺服器</a>
           <a class="btn btn--ghost" href="pages/guide.html">新手入門</a>
@@ -46,7 +46,7 @@
 
     <section class="notice-strip container" aria-label="最新公告快訊">
       <span class="notice-strip__label">最新公告</span>
-      <p><strong>5/24 伺服器版本更新公告</strong>｜新增水域副本、平衡職業技能與調整裝備掉落。</p>
+      <p id="notice-content"><strong>5/24 伺服器版本更新公告</strong>｜新增水域副本、平衡職業技能與調整裝備掉落。</p>
       <a href="pages/news.html">更多公告 →</a>
     </section>
 
@@ -96,7 +96,7 @@
           <h2>最新公告</h2>
           <a href="pages/news.html">更多公告 →</a>
         </div>
-        <div class="news-list">
+        <div class="news-list" id="home-news-list">
           <article class="news-item">
             <span class="tag tag--important">重要</span>
             <div>
@@ -128,13 +128,13 @@
         <span class="server-card__badge">ONLINE</span>
         <h2>伺服器資訊</h2>
         <dl>
-          <div><dt>IP</dt><dd>play.celestmere.net</dd></div>
-          <div><dt>版本</dt><dd>1.21.6 - 1.21.11</dd></div>
-          <div><dt>狀態</dt><dd>開啟</dd></div>
+          <div><dt>IP</dt><dd id="server-ip">play.celestmere.net</dd></div>
+          <div><dt>版本</dt><dd id="server-version">1.21.6 - 1.21.11</dd></div>
+          <div><dt>狀態</dt><dd id="server-status">開啟</dd></div>
         </dl>
         <div style="display:flex;gap:10px;margin-top:0;">
-          <button class="btn btn--primary copy-ip" style="flex:1;" data-copy="play.celestmere.net">複製伺服器 IP</button>
-          <a class="btn btn--ghost" href="https://discord.gg/5kQ7qkG" target="_blank" rel="noopener noreferrer" style="flex:1;">伺服器 Discord</a>
+          <button id="copy-ip-btn" class="btn btn--primary copy-ip" style="flex:1;" data-copy="play.celestmere.net">複製伺服器 IP</button>
+          <a id="discord-btn" class="btn btn--ghost" href="https://discord.gg/5kQ7qkG" target="_blank" rel="noopener noreferrer" style="flex:1;">伺服器 Discord</a>
         </div>
       </aside>
     </section>
@@ -172,5 +172,37 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script>
+  (async () => {
+    const TAG = { important: 'tag--important', event: 'tag--event', update: 'tag--update', general: '' };
+    const [info, news] = await Promise.all([
+      fetch('/api/data/server-info').then(r => r.json()),
+      fetch('/api/data/news').then(r => r.json()),
+    ]);
+
+    document.getElementById('hero-eyebrow').textContent = info.heroEyebrow;
+    document.getElementById('hero-title').textContent = info.heroTitle;
+    document.getElementById('hero-lead').innerHTML = info.heroLead.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+
+    document.getElementById('server-ip').textContent = info.ip;
+    document.getElementById('server-version').textContent = info.version;
+    document.getElementById('server-status').textContent = info.status;
+    const copyBtn = document.getElementById('copy-ip-btn');
+    if (copyBtn) copyBtn.dataset.copy = info.ip;
+    const discordBtn = document.getElementById('discord-btn');
+    if (discordBtn) discordBtn.href = info.discordUrl;
+
+    if (news.length > 0) {
+      document.getElementById('notice-content').innerHTML = `<strong>${news[0].title}</strong>`;
+    }
+
+    document.getElementById('home-news-list').innerHTML = news.slice(0, 3).map(n => `
+      <article class="news-item">
+        <span class="tag ${TAG[n.tagType] || ''}">${n.tag}</span>
+        <div><h3>${n.title}</h3><p>${n.content}</p></div>
+        <time datetime="${n.date}">${n.date}</time>
+      </article>`).join('');
+  })();
+  </script>
 </body>
 </html>
