@@ -15,26 +15,29 @@ export default async function ClassDetailPage({ params }: Props) {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-3xl px-5 py-16 lg:px-8">
-        <Link href="/classes" className="mb-8 inline-block text-sm text-white/40 hover:text-white">
+      <main className="px-[5%] py-16">
+        <Link href="/classes" className="mb-8 inline-block text-sm text-slate-500 hover:text-slate-800">
           ← 所有職業
         </Link>
-        <p className="text-sm font-black tracking-[0.18em] text-cele-teal">{cls.role}</p>
-        <h1 className="mt-3 text-5xl font-black text-white">{cls.name}</h1>
-        <p className="mt-2 text-sm text-white/45">難度：{cls.difficulty}</p>
-        <p className="mt-6 text-lg leading-8 text-white/70">{cls.description}</p>
-        {cls.features.length > 0 && (
-          <div className="mt-8">
-            <h2 className="mb-3 text-lg font-black text-white">特色</h2>
-            <div className="flex flex-wrap gap-2">
-              {cls.features.map((f) => (
-                <span key={f} className="rounded-lg bg-white/10 px-3 py-1.5 text-sm text-white/75">
-                  {f}
-                </span>
-              ))}
+
+        <div className="rounded-3xl bg-[#fdf8f0] p-14">
+          <p className="text-sm font-black tracking-[0.18em] text-cele-teal">{cls.role}</p>
+          <h1 className="mt-3 text-5xl font-black text-stone-900">{cls.name}</h1>
+          <p className="mt-2 text-sm text-stone-500">難度：{cls.difficulty}</p>
+          <p className="mt-6 text-lg leading-8 text-stone-700">{cls.description}</p>
+          {cls.features.length > 0 && (
+            <div className="mt-8">
+              <h2 className="mb-3 text-lg font-black text-stone-800">特色</h2>
+              <div className="flex flex-wrap gap-2">
+                {cls.features.map((f) => (
+                  <span key={f} className="rounded-lg bg-stone-200 px-3 py-1.5 text-sm text-stone-600">
+                    {f}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </main>
     </>
   );

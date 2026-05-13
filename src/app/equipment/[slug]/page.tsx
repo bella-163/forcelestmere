@@ -22,20 +22,20 @@ export default async function EquipmentDetailPage({ params }: Props) {
     <>
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-5 py-16 lg:px-8">
-        <Link href="/equipment" className="mb-8 inline-block text-sm text-white/40 hover:text-white">
+        <Link href="/equipment" className="mb-8 inline-block text-sm text-slate-500 hover:text-slate-800">
           ← 所有裝備
         </Link>
         <div className="flex items-center gap-3">
-          <span className="text-sm text-white/45">{eq.type}</span>
-          <span className={`text-sm font-black ${rarityColor[eq.rarity] ?? "text-white/50"}`}>{eq.rarity}</span>
+          <span className="text-sm text-slate-400">{eq.type}</span>
+          <span className={`text-sm font-black ${rarityColor[eq.rarity] ?? "text-slate-400"}`}>{eq.rarity}</span>
         </div>
-        <h1 className="mt-3 text-5xl font-black text-white">{eq.name}</h1>
-        <p className="mt-2 text-sm text-white/45">來源：{eq.source}</p>
-        <div className="mt-6 rounded-2xl border border-cele-teal/30 bg-cele-teal/5 p-5">
-          <p className="text-xs font-black tracking-wider text-cele-teal">效果</p>
-          <p className="mt-2 text-white/80">{eq.effect}</p>
+        <h1 className="mt-3 text-5xl font-black text-slate-900">{eq.name}</h1>
+        <p className="mt-2 text-sm text-slate-400">來源：{eq.source}</p>
+        <div className="mt-6 rounded-2xl border border-teal-200 bg-teal-50 p-5">
+          <p className="text-xs font-black tracking-wider text-teal-600">效果</p>
+          <p className="mt-2 text-slate-700">{eq.effect}</p>
         </div>
-        <p className="mt-6 text-lg leading-8 text-white/70">{eq.description}</p>
+        <p className="mt-6 text-lg leading-8 text-slate-600">{eq.description}</p>
       </main>
     </>
   );
