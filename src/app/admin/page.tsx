@@ -6,8 +6,9 @@ import Link from "next/link";
 const SECTIONS = [
   { href: "/admin/news", label: "最新消息", desc: "新增、編輯、刪除消息，依日期排序" },
   { href: "/admin/classes", label: "職業介紹", desc: "管理所有職業資料" },
-  { href: "/admin/equipment", label: "裝備介紹", desc: "管理裝備項目清單" },
   { href: "/admin/monsters", label: "怪物圖鑑", desc: "管理怪物資料" },
+  { href: "/admin/dungeons", label: "副本攻略", desc: "管理副本資料與通關攻略" },
+  { href: "/admin/events", label: "活動攻略", desc: "管理限時活動資料與攻略" },
   { href: "/admin/commands", label: "功能指令", desc: "管理伺服器指令清單" },
 ];
 

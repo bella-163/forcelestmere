@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { NewsCarousel } from "@/components/NewsCarousel";
 import { readData } from "@/lib/data";
-import type { HomeData } from "@/types/site";
+import type { HomeData, NewsData } from "@/types/site";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,7 @@ const themeStyles: Record<string, { card: string; eyebrow: string }> = {
 
 export default function HomePage() {
   const home = readData<HomeData>("home");
+  const news = readData<NewsData>("news");
 
   return (
     <>
@@ -21,7 +23,7 @@ export default function HomePage() {
       <main>
         {/* Hero */}
         <section
-          className="relative px-5 pb-20 pt-28 text-center lg:px-8"
+          className="relative flex min-h-screen flex-col items-center justify-center px-5 pb-48 pt-28 text-center lg:px-8"
           style={{
             backgroundImage: "url('/images/bg.jpeg')",
             backgroundSize: "cover",
@@ -30,44 +32,23 @@ export default function HomePage() {
         >
           <div className="absolute inset-0 bg-[#ddeef8]/70" />
           <div className="relative z-10">
-          <p className="mb-4 text-sm font-black tracking-[0.22em] text-cele-teal">{home.hero.eyebrow}</p>
-          <h1 className="mx-auto max-w-3xl text-5xl font-black leading-[1.1] text-slate-900 lg:text-7xl">
-            {home.hero.title}
-          </h1>
-          <p className="mx-auto mt-8 max-w-xl whitespace-pre-line text-lg leading-8 text-slate-600">
-            {home.hero.lead}
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link
-              href={home.hero.ctaPrimary.href}
-              className="rounded-xl bg-cele-teal px-7 py-3.5 font-black text-white transition hover:bg-cele-teal/85"
-            >
-              {home.hero.ctaPrimary.text}
-            </Link>
-            <Link
-              href={home.hero.ctaSecondary.href}
-              className="rounded-xl border border-slate-300 bg-white/60 px-7 py-3.5 font-bold text-slate-700 transition hover:bg-white/90"
-            >
-              {home.hero.ctaSecondary.text}
-            </Link>
-          </div>
-          {home.serverIPs.length > 0 && (
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {home.serverIPs.map((s) => (
-                <span
-                  key={s.label}
-                  className="rounded-lg border border-slate-300 bg-white/60 px-4 py-2 text-sm font-mono text-slate-600"
-                >
-                  {s.label}: <span className="text-cele-teal">{s.ip}</span>
-                </span>
-              ))}
-            </div>
-          )}
+            <p className="mb-4 text-sm font-black tracking-[0.22em] text-cele-teal">{home.hero.eyebrow}</p>
+            <h1 className="mx-auto max-w-3xl text-5xl font-black leading-[1.1] text-slate-900 lg:text-7xl">
+              {home.hero.title}
+            </h1>
+            <p className="mx-auto mt-6 max-w-xl whitespace-pre-line text-lg leading-8 text-slate-600">
+              {home.hero.lead}
+            </p>
           </div>
         </section>
 
+        {/* News carousel — overlaps hero bottom */}
+        <div className="relative z-10 mx-auto -mt-24 max-w-3xl px-5 pb-12 lg:px-8">
+          <NewsCarousel posts={news.posts} />
+        </div>
+
         {/* Feature cards */}
-        <section className="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
+        <section className="mx-auto max-w-7xl px-5 pb-20 pt-12 lg:px-8">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {home.featureCards.map((card) => {
               const s = themeStyles[card.theme] ?? themeStyles.teal;

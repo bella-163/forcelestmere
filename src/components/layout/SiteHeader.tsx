@@ -24,22 +24,22 @@ export function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm font-semibold text-white/75 lg:flex">
+        <nav className="hidden -my-4 self-stretch items-stretch gap-0 text-sm font-semibold text-white/75 lg:flex">
           {navItems.map((item) => {
             if (item.href === "/guides") {
               return (
                 <div
                   key={item.href}
-                  className="relative"
+                  className="relative flex items-stretch"
                   onMouseEnter={() => setGuidesOpen(true)}
                   onMouseLeave={() => setGuidesOpen(false)}
                 >
-                  <Link href="/guides" className="transition hover:text-cele-teal">
+                  <Link href="/guides" className="flex items-center px-4 transition hover:text-cele-teal">
                     {item.label}
                   </Link>
 
                   {guidesOpen && (
-                    <div className="absolute left-1/2 top-full -translate-x-1/2 pt-3">
+                    <div className="absolute left-1/2 top-full -translate-x-1/2 pt-1">
                       <div className="min-w-[140px] overflow-hidden rounded-xl border border-blue-900/60 bg-[#0d2137] shadow-lg">
                         {GUIDES_CHILDREN.map((child) => (
                           <Link
@@ -63,7 +63,7 @@ export function SiteHeader() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition hover:text-cele-teal"
+                className="flex items-center px-4 transition hover:text-cele-teal"
               >
                 {item.label}
               </a>
@@ -71,7 +71,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="transition hover:text-cele-teal"
+                className="flex items-center px-4 transition hover:text-cele-teal"
               >
                 {item.label}
               </Link>

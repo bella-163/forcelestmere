@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CursorGlow } from "@/components/CursorGlow";
 
 export const metadata: Metadata = {
   title: "文靜之潭｜Minecraft RPG 伺服器攻略站",
@@ -9,7 +10,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-Hant">
-      <body>{children}</body>
+      <body>
+        <CursorGlow />
+        {children}
+      </body>
     </html>
   );
 }
