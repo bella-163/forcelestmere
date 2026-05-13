@@ -43,7 +43,7 @@ export default function HomePage() {
         </section>
 
         {/* News carousel — overlaps hero bottom */}
-        <div className="relative z-10 mx-auto -mt-24 max-w-3xl px-5 pb-12 lg:px-8">
+        <div className="relative z-10 mx-auto -mt-[293px] max-w-5xl px-5 pb-12 lg:px-8">
           <NewsCarousel posts={news.posts} />
         </div>
 

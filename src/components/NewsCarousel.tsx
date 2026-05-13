@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Post = {
   id: string;
@@ -25,13 +25,20 @@ export function NewsCarousel({ posts }: { posts: Post[] }) {
   const totalPages = Math.ceil(posts.length / PAGE_SIZE);
   const visible = posts.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
 
+  useEffect(() => {
+    if (totalPages <= 1) return;
+    const timer = setInterval(() => {
+      setPage((p) => (p + 1) % totalPages);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [totalPages]);
+
   return (
     <div className="relative flex items-center gap-3">
       {/* Left arrow */}
       <button
-        onClick={() => setPage((p) => Math.max(0, p - 1))}
-        disabled={page === 0}
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/80 text-xl text-slate-500 shadow transition hover:bg-white disabled:opacity-0"
+        onClick={() => setPage((p) => (p - 1 + totalPages) % totalPages)}
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/80 text-xl text-slate-500 shadow transition hover:bg-white"
       >
         ‹
       </button>
@@ -79,9 +86,8 @@ export function NewsCarousel({ posts }: { posts: Post[] }) {
 
       {/* Right arrow */}
       <button
-        onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-        disabled={page === totalPages - 1}
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/80 text-xl text-slate-500 shadow transition hover:bg-white disabled:opacity-0"
+        onClick={() => setPage((p) => (p + 1) % totalPages)}
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/80 text-xl text-slate-500 shadow transition hover:bg-white"
       >
         ›
       </button>
